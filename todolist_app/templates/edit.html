@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Edit</title>
+{% endblock title %}
+{% block content %}
+    <div class = "container">
+        {% if task_obj.manage == request.user %}
+            <form method ="POST">
+                <div class ="row">
+                    {% csrf_token %}
+                    <div class = "col-4">
+                        <label></label>
+                    </div>
+                    <div class = "col-4">
+                        <input type="text" class="form-control" name = "task"  placeholder="{{ task_obj.task }}" value = "{{ task_obj.task }}">
+                        <input type="hidden" name = "done"  placeholder="{{ task_obj.done }}" value = "{{ task_obj.done }}">
+                    </div>
+                    <div class = "col-2">
+                        <button type="submit" class="btn btn-primary">Edit Task</button>
+                    </div>
+                </div>
+            </form>
+        {%else%}
+            <p>You are not allowed to view this page!</p>
+        {% endif %}
+    </div>
+{% endblock content %}
